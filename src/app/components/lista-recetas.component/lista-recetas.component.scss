@@ -1,0 +1,162 @@
+// Colores principales
+$primary-color: #ff6b35;      // color principal botones
+$secondary-color: #f7f7f7;    // fondo principal
+$accent-color: #ffcc29;       // resaltar favoritos
+$text-color: #333;
+$card-bg: #ffffff;
+$card-shadow: rgba(0, 0, 0, 0.1);
+
+// Tipografía
+$font-main: 'Poppins', sans-serif;
+
+.recipe-app {
+  font-family: $font-main;
+  background: $secondary-color;
+  min-height: 100vh;
+
+  .header {
+    background: $primary-color;
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .nav-buttons {
+        display: flex;
+        gap: 1rem;
+
+        .btn {
+          padding: 0.5rem 1rem;
+          font-weight: 600;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: 0.3s ease;
+
+          &.primary {
+            background: white;
+            color: $primary-color;
+            &:hover { background: rgba(255,255,255,0.9); }
+          }
+
+          &.secondary {
+            background: rgba(255,255,255,0.3);
+            color: white;
+            &:hover { background: rgba(255,255,255,0.5); }
+          }
+        }
+      }
+    }
+  }
+
+  .main-content {
+    padding: 2rem;
+
+    .empty-state {
+      text-align: center;
+      font-size: 1.2rem;
+      color: $text-color;
+      margin-top: 2rem;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+
+      .recipe-card {
+        background: $card-bg;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px $card-shadow;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px $card-shadow;
+        }
+
+        .card-image {
+          width: 100%;
+          height: 180px;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            &:hover { transform: scale(1.05); }
+          }
+        }
+
+        .card-body {
+          padding: 1rem;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+
+          .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: $text-color;
+            margin-bottom: 0.5rem;
+          }
+
+          .card-description {
+            flex-grow: 1;
+            color: $text-color;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+          }
+
+          .card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+
+            .btn {
+              padding: 0.4rem 0.8rem;
+              font-size: 0.85rem;
+              border-radius: 5px;
+              border: 1px solid transparent;
+              cursor: pointer;
+              transition: 0.2s ease;
+
+              &.outline {
+                background: none;
+                border: 1px solid $primary-color;
+                color: $primary-color;
+                &:hover { background: $primary-color; color: white; }
+              }
+
+              &.favorite {
+                background: $accent-color;
+                color: white;
+                &:hover { background: darken($accent-color, 10%); }
+              }
+
+              &.danger {
+                background: #e63946;
+                color: white;
+                &:hover { background: darken(#e63946, 10%); }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

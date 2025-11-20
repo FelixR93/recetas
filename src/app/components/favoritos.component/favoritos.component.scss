@@ -1,0 +1,101 @@
+/* favoritos.component.scss */
+
+/* Contenedor general */
+.favoritos-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #1e3a8a; // azul profesional
+    font-weight: 700;
+  }
+
+  .empty {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #6c757d; // gris bootstrap
+    margin: 2rem 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .card {
+    background-color: #f8f9fa; // color de fondo profesional
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 1rem;
+
+      h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #0d6efd;
+      }
+
+      p {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        color: #495057;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        button {
+          flex: 1;
+          min-width: 100px;
+          padding: 0.4rem 0.75rem;
+          border: none;
+          border-radius: 0.5rem;
+          cursor: pointer;
+          font-weight: 500;
+          transition: background-color 0.2s ease, color 0.2s ease;
+
+          &:nth-child(1) {
+            background-color: #0d6efd;
+            color: #fff;
+
+            &:hover {
+              background-color: #084298;
+            }
+          }
+
+          &:nth-child(2) {
+            background-color: #ffc107;
+            color: #212529;
+
+            &:hover {
+              background-color: #d39e00;
+            }
+          }
+        }
+      }
+    }
+  }
+}

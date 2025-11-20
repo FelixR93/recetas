@@ -1,0 +1,26 @@
+<div *ngIf="receta; else noReceta" class="detalle-container">
+  <h2>{{ receta.title }}</h2>
+  <img *ngIf="receta.image" [src]="receta.image" alt="{{receta.title}}" class="receta-img"/>
+  <p>{{ receta.description }}</p>
+
+  <button (click)="toggleFavorite()">
+    {{ receta.favorite ? '★ Favorita' : '☆ Marcar como favorita' }}
+  </button>
+
+  <h3>Ingredientes</h3>
+  <ul>
+    <li *ngFor="let ing of receta.ingredients">{{ ing }}</li>
+  </ul>
+
+  <h3>Pasos</h3>
+  <ol>
+    <li *ngFor="let paso of receta.steps">{{ paso }}</li>
+  </ol>
+
+  <button (click)="volver()">Volver</button>
+</div>
+
+<ng-template #noReceta>
+  <p>Receta no encontrada.</p>
+  <button (click)="volver()">Volver</button>
+</ng-template>

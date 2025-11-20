@@ -1,0 +1,89 @@
+<div class="container my-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">{{ editing ? 'Editar' : 'Agregar' }} Receta</h2>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="submit()" novalidate>
+        <!-- Título -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Título</label>
+          <input
+            id="title"
+            [(ngModel)]="receta.title"
+            name="title"
+            class="form-control"
+            placeholder="Ingrese el título de la receta"
+            required>
+        </div>
+
+        <!-- Descripción -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Descripción</label>
+          <textarea
+            id="description"
+            [(ngModel)]="receta.description"
+            name="description"
+            class="form-control"
+            rows="3"
+            placeholder="Breve descripción de la receta"></textarea>
+        </div>
+
+        <!-- Imagen -->
+        <div class="mb-3">
+          <label for="image" class="form-label">Imagen</label>
+          <input
+            id="image"
+            type="file"
+            (change)="onImageSelected($event)"
+            class="form-control">
+          <img *ngIf="receta.image" [src]="receta.image" alt="Imagen receta" class="img-fluid mt-2 rounded shadow-sm" />
+        </div>
+
+        <!-- Ingredientes -->
+        <div class="mb-4">
+          <h5>Ingredientes</h5>
+          <div *ngFor="let ing of receta.ingredients; let i = index; trackBy: trackByIndex" class="input-group mb-2">
+            <input
+              [(ngModel)]="receta.ingredients[i]"
+              [name]="'ing' + i"
+              type="text"
+              class="form-control"
+              placeholder="1 taza de...">
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              *ngIf="receta.ingredients.length > 1"
+              (click)="removeIngredient(i)">-</button>
+          </div>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="addIngredient()">Agregar ingrediente</button>
+        </div>
+
+        <!-- Pasos -->
+        <div class="mb-4">
+          <h5>Pasos</h5>
+          <div *ngFor="let paso of receta.steps; let i = index; trackBy: trackByIndex" class="input-group mb-2">
+            <textarea
+              [(ngModel)]="receta.steps[i]"
+              [name]="'step' + i"
+              class="form-control"
+              rows="2"
+              placeholder="Paso ..."></textarea>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              *ngIf="receta.steps.length > 1"
+              (click)="removeStep(i)">-</button>
+          </div>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="addStep()">Agregar paso</button>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-success">Guardar</button>
+          <button type="button" class="btn btn-secondary" (click)="router.navigate(['/'])">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

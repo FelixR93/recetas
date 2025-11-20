@@ -1,0 +1,21 @@
+<div class="favoritos-container">
+  <h2>Recetas Favoritas</h2>
+
+  <div *ngIf="favoritos.length === 0">No hay recetas favoritas.</div>
+
+  <div class="grid">
+    <div class="card" *ngFor="let r of favoritos">
+      <img *ngIf="r.image" [src]="r.image" alt="{{r.title}}" class="card-img"/>
+      <div class="card-body">
+        <h3>{{ r.title }}</h3>
+        <p>{{ r.description }}</p>
+        <div class="actions">
+          <button (click)="verDetalle(r.id)">Ver detalle</button>
+          <button (click)="toggleFavorite(r.id)">
+            {{ r.favorite ? '★ Desmarcar' : '☆ Marcar' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

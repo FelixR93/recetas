@@ -1,0 +1,50 @@
+<div class="recipe-app">
+
+  <!-- Header principal -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">🍲 Todas las Recetas</div>
+      <nav class="nav-buttons">
+        <button class="btn primary" (click)="router.navigate(['/agregar'])">Agregar Receta</button>
+        <button class="btn secondary" (click)="router.navigate(['/favoritos'])">Favoritos</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+
+    <!-- Estado vacío -->
+    <section *ngIf="recetas.length === 0" class="empty-state">
+      <p>No hay recetas disponibles.</p>
+    </section>
+
+    <!-- Grid de recetas -->
+    <section class="recipe-grid">
+      <article class="recipe-card" *ngFor="let r of recetas">
+
+        <!-- Imagen de la receta -->
+        <div class="card-image" *ngIf="r.image">
+          <img [src]="r.image" alt="{{r.title}}" />
+        </div>
+
+        <!-- Contenido de la receta -->
+        <div class="card-body">
+          <h2 class="card-title">{{ r.title }}</h2>
+          <p class="card-description">{{ r.description }}</p>
+
+          <!-- Acciones de la receta -->
+          <div class="card-actions">
+            <button class="btn outline" (click)="verDetalle(r.id)">Ver detalle</button>
+            <button class="btn outline" (click)="editar(r.id)">Editar</button>
+            <button class="btn favorite" (click)="toggleFavorite(r.id)">
+              {{ r.favorite ? '★ Favorita' : '☆ Marcar' }}
+            </button>
+            <button class="btn danger" (click)="eliminar(r.id)">Eliminar</button>
+          </div>
+        </div>
+      </article>
+    </section>
+
+  </main>
+</div>
